@@ -27,5 +27,20 @@ class MoreappAPI
       registrations.map{|data| MoreappAPI::Registration.new(self, data)}
     end
 
+
+    def post_instruction(recipients, message, data, options={})
+      recipients = recipients.is_a?(String) ? [recipients] : recipients
+      
+      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer.id}/#{@folder.id}/#{self.id}/instructions",
+                                  {
+                                      publishInfo: {type: "IMMEDIATE"},
+                                      recipients: recipients,
+                                      data: data,
+                                      message: message
+                                  }.to_json,
+                                  { 'Content-Type' => 'application/json' } )
+      JSON.parse(response.body)
+    end
+
   end
 end
