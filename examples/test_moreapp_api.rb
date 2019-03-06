@@ -25,6 +25,12 @@ puts "My folder = #{my_folder.id} - #{my_folder.name}"
 puts "My folder RAW = #{my_folder.raw_data.inspect}"
 puts "My folder has forms = #{my_folder.forms.inspect}"
 
+my_form = my_folder.forms.first
+
+my_registrations = my_form.registrations
+
+puts my_registrations.inspect 
+
 
 
 exit 

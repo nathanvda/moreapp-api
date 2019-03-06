@@ -23,7 +23,7 @@ class MoreappAPI
 
 
   def request(method, url, data={}, options={})
-    @consumer.request(method, url, nil, data, options)
+    @consumer.request(method, url, nil, {}, data, options)
   end
 
 

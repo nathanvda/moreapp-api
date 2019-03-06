@@ -3,7 +3,7 @@ require_relative 'folder'
 class MoreappAPI
   class Customer
 
-    attr_accessor :id, :name, :raw_data
+    attr_accessor :id, :name, :raw_data, :moreapp_api
 
     def initialize(moreapp_api, data)
       @moreapp_api = moreapp_api
@@ -17,7 +17,7 @@ class MoreappAPI
       response = @moreapp_api.request(:get, "/api/v1.0/customers/#{self.id}/folders")
 
       folders = JSON.parse(response.body)
-      folders.map{|data| MoreappAPI::Folder.new(@moreapp_api, data)}
+      folders.map{|data| MoreappAPI::Folder.new(self, data)}
     end
 
   end

@@ -3,10 +3,11 @@ require_relative 'form'
 class MoreappAPI
   class Folder
 
-    attr_accessor :id, :name, :raw_data
+    attr_accessor :id, :name, :raw_data, :customer
 
-    def initialize(moreapp_api, data)
-      @moreapp_api = moreapp_api
+    def initialize(customer, data)
+      @moreapp_api = customer.moreapp_api
+      @customer = customer
       @id = data["applicationId"]
       @name = data["name"]
       @form_ids = data["forms"]
@@ -15,7 +16,7 @@ class MoreappAPI
 
     def forms
       @form_ids.map do |long_form_id|
-        MoreappAPI::Form.new(@moreapp_api, long_form_id)
+        MoreappAPI::Form.new(self, long_form_id)
       end
     end
 
