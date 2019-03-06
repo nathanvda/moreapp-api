@@ -1,0 +1,10 @@
+
+
+# copy this file to `config.rb` and
+# fill in your own consumer-key and secret
+#
+# the consumer-key is the email you log on with, and the consumer-secret you
+# can generate on https://docs.moreapp.com/#/api/authentication
+
+MY_CONSUMER_KEY = 'your-email@example.com'
+MY_CONSUMER_SECRET = 'xxxxxxxxx'

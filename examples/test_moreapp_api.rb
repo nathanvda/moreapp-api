@@ -1,10 +1,10 @@
 
 require_relative '../lib/moreapp_api'
+require_relative 'config'
 
 ## use your own keys
-consumer_key = 'nathanvda@gmail.com'
-consumer_secret = 'af3ddd0e74464743a72008ce64739605df2e5e7e'
-
+consumer_key = MY_CONSUMER_KEY
+consumer_secret = MY_CONSUMER_SECRET
 
 
 
