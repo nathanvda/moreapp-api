@@ -6,12 +6,30 @@ class MoreappAPI
 
     attr_accessor :id, :name, :raw_data
 
-    def initialize(folder, long_id)
-      @customer = folder.customer
-      @folder = folder
-      @moreapp_api = @customer.moreapp_api
-      @id = long_id[0..31]
-      @name = long_id[32..-1]
+
+    def initialize(moreapp_api, customer_or_id, folder_or_id, form_id, form_name = "")
+      @moreapp_api = moreapp_api
+
+      if customer_or_id.is_a?(MoreappAPI::Customer)
+        @customer = customer_or_id
+        @customer_id = @customer.id
+      else
+        @customer_id = customer_or_id
+      end
+      if folder_or_id.is_a?(MoreappAPI::Folder)
+        @folder = folder_or_id
+        @folder_id = @folder.id
+      else
+        @folder_id = folder_or_id
+      end
+      @id = form_id
+      @name = form_name
+    end
+
+
+    def self.create_in_folder(folder, long_id)
+      customer = folder.customer
+      MoreappAPI::Form.new(customer.moreapp_api, customer, folder, long_id[0..31], long_id[32..-1])
     end
 
 
@@ -19,7 +37,7 @@ class MoreappAPI
       options[:pageSize] ||= 100
       options[:sort] ||= []
       options[:query] ||= []
-      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer.id}/folders/#{@folder.id}/forms/#{self.id}/registrations/filter/#{page}",
+      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/folders/#{@folder_id}/forms/#{self.id}/registrations/filter/#{page}",
                                   { pageSize: options[:pageSize], sort: options[:sort], query: options[:query] }.to_json,
                                   { 'Content-Type' => 'application/json' } )
 
@@ -31,7 +49,7 @@ class MoreappAPI
     def post_instruction(recipients, message, data, options={})
       recipients = recipients.is_a?(String) ? [recipients] : recipients
       
-      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer.id}/#{@folder.id}/#{self.id}/instructions",
+      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/#{@folder_id}/#{self.id}/instructions",
                                   {
                                       publishInfo: {type: "IMMEDIATE"},
                                       recipients: recipients,

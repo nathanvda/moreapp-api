@@ -16,7 +16,7 @@ class MoreappAPI
 
     def forms
       @form_ids.map do |long_form_id|
-        MoreappAPI::Form.new(self, long_form_id)
+        MoreappAPI::Form.create_in_folder(self, long_form_id)
       end
     end
 
