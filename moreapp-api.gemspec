@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["'nathanvda'".freeze]
-  s.date = "2019-03-12"
+  s.date = "2019-04-03"
   s.description = "This gem allows you to connect to the moreapp API to send instructions and retrieve the registrations".freeze
   s.email = "'nathan@dixis.com'".freeze
   s.extra_rdoc_files = [
@@ -30,12 +30,14 @@ Gem::Specification.new do |s|
     "VERSION",
     "examples/config.rb.example",
     "examples/test_moreapp_api.rb",
+    "examples/test_post_instruction_to_form.rb",
     "lib/moreapp_api.rb",
     "lib/moreapp_api/customer.rb",
     "lib/moreapp_api/folder.rb",
     "lib/moreapp_api/form.rb",
     "lib/moreapp_api/registration.rb",
     "lib/moreapp_api/registration_file.rb",
+    "moreapp-api.gemspec",
     "spec/moreapp_api_spec.rb",
     "spec/spec_helper.rb"
   ]
