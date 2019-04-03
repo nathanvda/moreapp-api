@@ -16,8 +16,8 @@ Juwelier::Tasks.new do |gem|
   gem.name = "moreapp-api"
   gem.homepage = "http://github.com/nathanvda/moreapp-api"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A simple gem to use the moreapp API}
+  gem.description = %Q{This gem allows you to connect to the moreapp API to send instructions and retrieve the registrations}
   gem.email = "'nathan@dixis.com'"
   gem.authors = ["'nathanvda'"]
 
