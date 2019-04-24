@@ -8,8 +8,8 @@ class MoreappAPI
   DEFAULT_MORE_APP_API_BASE = 'https://api.moreapp.com'
 
 
-  def initialize(consumer_key, consumer_secret)
-    @consumer = OAuth::Consumer.new(consumer_key, consumer_secret, {site: MoreappAPI.api_base })
+  def initialize(consumer_key, consumer_secret, options={})
+    @consumer = OAuth::Consumer.new(consumer_key, consumer_secret, {site: MoreappAPI.api_base, proxy: options[:proxy] || options["proxy"] || ENV['http_proxy'] || ENV["HTTP_PROXY"] })
   end
 
 
