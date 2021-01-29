@@ -8,6 +8,7 @@ class MoreappAPI
 
     def post(filename, content_type = 'image/png')
       # !!! Undocumented more-app API
+      # !!! TODO verify this still works after API changes of 08/2020
 
       image_data = Base64.encode64(File.open(filename, "rb").read)
 

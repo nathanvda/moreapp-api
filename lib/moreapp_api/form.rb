@@ -1,4 +1,4 @@
-require_relative 'registration'
+require_relative 'submission'
 
 
 class MoreappAPI
@@ -33,23 +33,29 @@ class MoreappAPI
     end
 
 
-    def registrations(page=0, options = {})
+
+    def submissions(page=0, options = {})
       options[:pageSize] ||= 100
       options[:sort] ||= []
       options[:query] ||= []
-      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/folders/#{@folder_id}/forms/#{self.id}/registrations/filter/#{page}",
+      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/forms/#{self.id}/submissions/filter/#{page}",
                                   { pageSize: options[:pageSize], sort: options[:sort], query: options[:query] }.to_json,
                                   { 'Content-Type' => 'application/json' } )
 
       registrations = JSON.parse(response.body)
-      registrations.map{|data| MoreappAPI::Registration.new(self, data)}
+      registrations.map{|data| MoreappAPI::Submission.new(self, data)}
+    end
+
+
+    def registrations(page=0, options={})
+      submissions page, options
     end
 
 
     def post_instruction(recipients, message, data, options={})
       recipients = recipients.is_a?(String) ? [recipients] : recipients
       
-      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/#{@folder_id}/#{self.id}/instructions",
+      response = @moreapp_api.request(:post, "/api/v1.0/customers/#{@customer_id}/#{self.id}/instructions",
                                   {
                                       publishInfo: {type: "IMMEDIATE"},
                                       recipients: recipients,

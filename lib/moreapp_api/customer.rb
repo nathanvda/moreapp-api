@@ -14,7 +14,7 @@ class MoreappAPI
     end
 
     def folders
-      response = @moreapp_api.request(:get, "/api/v1.0/customers/#{self.id}/folders")
+      response = @moreapp_api.request(:get, "/api/v1.0/forms/customer/#{self.id}/folders")
 
       folders = JSON.parse(response.body)
       folders.map{|data| MoreappAPI::Folder.new(self, data)}

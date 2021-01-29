@@ -27,9 +27,9 @@ puts "My folder has forms = #{my_folder.forms.inspect}"
 
 my_form = my_folder.forms.first
 
-my_registrations = my_form.registrations
+my_submissions = my_form.submissions
 
-puts my_registrations.inspect 
+puts my_submissions.inspect
 
 
 puts "Post an instruction!"
@@ -39,7 +39,7 @@ form_data = {
     description: "You should visit this place and conduct our survey!",
 }
 
-response = my_form.post_instruction("nathanvda@gmail.com", "RELAX! This is only a test!", form_data)
+response = my_form.post_instruction("some-person@someemaildomain.com", "RELAX! This is only a test!", form_data)
 
 puts response.inspect
 

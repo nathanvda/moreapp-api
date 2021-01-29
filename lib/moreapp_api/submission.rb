@@ -1,5 +1,5 @@
 class MoreappAPI
-  class Registration
+  class Submission
 
     attr_accessor :id, :name, :raw_data
 
